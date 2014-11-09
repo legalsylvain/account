@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+<!-- JQuery -->
+<script>
+    $('#nav_new_expense').addClass('active');
+</script>
+    <form method="POST" action="{{ url_for('create_new_expense') }}">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{_('Expense Account')}}</h2>
+            </div>
+{% for expense_account in expense_accounts %}
+            <div class="col-xs-6 col-md-2">
+                <input id="expense_{{expense_account.id}}" type="radio" name="expense_account" value="{{expense_account.id}}"/>
+                <label for="expense_{{expense_account.id}}">{{expense_account.name}}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{_('Payment Account')}}</h2>
+            </div>
+{% for bank_account in bank_accounts %}
+            <div class="col-xs-6 col-md-2">
+                <input id="bank_{{bank_account.id}}" type="radio" name="bank_account" value="{{bank_account.id}}"/>
+                <label for="bank_{{bank_account.id}}">{{bank_account.name}}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{_('Amount')}}</h2>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="{{ _('Value')}}" name="amount">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{_('Extra Comment')}}</h2>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="input-group col-xs-12 col-md-12">
+                    <input type="text" class="form-control" placeholder="{{ _('Extra Comment')}}" name="comment">
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+               <button type="submit" class="center-block btn btn-primary">{{_('Validate')}}</button>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ _('Account Apps')}}{% block extra_title %}{% endblock %}</title>
+
+<!--        <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
+<!--        <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<!--        <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />-->
+
+    <!-- from : http://code.jquery.com/jquery-2.0.3.min.js -->
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <!-- from : http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js -->
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- from : http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css -->
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    {% block extra_css %}{% endblock %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="btn btn-sm btn-default" id="nav_home" href="{{  url_for('home') }}">{{ _('Home') }}</a>
+                        <a class="btn btn-sm btn-default" id="nav_new_expense" href="{{  url_for('new_expense') }}">{{ _('New Expense') }}</a>
+                        <a class="btn btn-sm btn-default" id="nav_new_cashout" href="{{  url_for('new_cashout') }}">{{ _('New Cashout') }}</a>
+                        <a class="btn btn-sm btn-default" id="nav_setting" href="{{  url_for('setting_account') }}">{{ _('Settings') }}</a>
+                </div>
+            </nav>
+
+    {% block breadcrumb_all %}
+        {% block breadcrumb %}
+        {% endblock %}
+    {% endblock %}
+
+          <div class="flashes">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="text-center bg-{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+          </div>
+      {% block container %}{% endblock %}
+        </div>
+
+    {% block extra_js %}{% endblock %}
+    </body>
+</html>

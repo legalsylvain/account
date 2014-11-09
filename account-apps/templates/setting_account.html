@@ -1,0 +1,36 @@
+{% extends 'base_setting.html' %}
+
+{% block container_setting %}
+<script>
+    $('#nav_setting_account').addClass('active');
+</script>
+
+
+<h1>{{ _('Your Accounts') }}</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>{{ _('ID') }}</th>
+            <th>{{ _('Code') }}</th>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Parent') }}</th>
+            <th></th>
+        <tr>
+    </thead>
+    <tbody>
+{% for account in accounts %}
+{% if account.type == 'normal' %}
+        <tr>
+{% else %}
+        <tr style="color: blue;">
+{% endif %}
+            <td>{{ account.id }}</td>
+            <td>{{ account.code }}</td>
+            <td>{{ account.name }}</td>
+            <td>{{ account.parent.code }} - {{ account.parent.name }} </td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
