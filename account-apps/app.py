@@ -36,14 +36,9 @@ babel = Babel(app)
 user_id = 1
 
 # ############################################################################
-# Home Route
+# Route
 # ############################################################################
 @app.route("/")
-def home():
-    return render_template(
-        'home.html',
-    )
-
 @app.route("/new_expense")
 def new_expense():
     expense_accounts = session.query(AccountAccount)\
@@ -175,6 +170,15 @@ def setting_user():
     return render_template(
         'setting_user.html',
         users=users,
+    )
+
+@app.route("/account_move_list")
+def account_move_list():
+    account_moves = session.query(AccountMove)\
+        .filter_by(user_id=user_id) #.order_by(AccountAccount.code)
+    return render_template(
+        'account_move_list.html',
+        account_moves=account_moves,
     )
 
 

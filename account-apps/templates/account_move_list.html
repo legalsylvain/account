@@ -1,0 +1,34 @@
+{% extends 'base_other.html' %}
+
+{% block container_other %}
+<script>
+    $('#nav_data_account_move_list').addClass('active');
+</script>
+
+
+<h1>{{ _('Your Account Moves') }}</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>{{ _('ID') }}</th>
+            <th>{{ _('Date') }}</th>
+            <th>{{ _('Name') }}</th>
+            <th></th>
+        <tr>
+    </thead>
+    <tbody>
+{% for account_move in account_moves %}
+{% if True %}
+        <tr>
+{% else %}
+        <tr style="color: blue;">
+{% endif %}
+            <td>{{ account_move.id }}</td>
+            <td>{{ account_move.date }}</td>
+            <td>{{ account_move.name }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

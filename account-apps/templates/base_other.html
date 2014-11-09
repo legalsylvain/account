@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block container %}
+<script>
+    $('#nav_other').addClass('active');
+</script>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="btn btn-sm btn-default" id="nav_other_account" href="{{ url_for('setting_account')}}">{{ _('Accounts') }}</a>
+            <a class="btn btn-sm btn-default" id="nav_other_user" href="{{ url_for('setting_user')}}">{{ _('Users') }}</a>
+            <a class="btn btn-sm btn-default" id="nav_other_account_move_list" href="{{ url_for('account_move_list')}}">{{ _('Account Moves') }}</a>
+        </div>
+    </div>
+</nav>
+{% block container_other %}{% endblock %}
+
+{% endblock %}
